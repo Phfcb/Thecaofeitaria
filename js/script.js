@@ -67,14 +67,16 @@ function generateOrderCode() {
     return `TCF-${dd}${mm}-${rand}`;
 }
 
-function changeItem(name, price, aCombinar, delta) {
+function changeItem(name, price, aCombinar, minQty, delta) {
+    const min = Math.max(1, minQty || 1);
     const index = cart.findIndex((item) => item.name === name);
 
     if (index === -1 && delta > 0) {
-        cart.push({ name, price, qty: delta, aCombinar });
+        cart.push({ name, price, qty: min, aCombinar, minQty: min });
     } else if (index !== -1) {
+        cart[index].minQty = min;
         cart[index].qty += delta;
-        if (cart[index].qty <= 0) {
+        if (cart[index].qty < min) {
             cart.splice(index, 1);
         }
     }
@@ -118,6 +120,7 @@ function renderMenuControls() {
         const name = row.dataset.name;
         const price = parseFloat(row.dataset.price || '0');
         const aCombinar = row.dataset.combinar === 'true';
+        const minQty = parseInt(row.dataset.min || '1', 10);
         const container = row.querySelector('.qty-control');
         const existing = cart.find((item) => item.name === name);
 
@@ -129,7 +132,7 @@ function renderMenuControls() {
             addBtn.className = 'qty-add';
             addBtn.textContent = '+';
             addBtn.ariaLabel = `Adicionar ${name}`;
-            addBtn.addEventListener('click', () => changeItem(name, price, aCombinar, 1));
+            addBtn.addEventListener('click', () => changeItem(name, price, aCombinar, minQty, 1));
             container.appendChild(addBtn);
             return;
         }
@@ -137,8 +140,8 @@ function renderMenuControls() {
         container.appendChild(
             createStepper(
                 existing.qty,
-                () => changeItem(name, price, aCombinar, -1),
-                () => changeItem(name, price, aCombinar, 1)
+                () => changeItem(name, price, aCombinar, minQty, -1),
+                () => changeItem(name, price, aCombinar, minQty, 1)
             )
         );
     });
@@ -192,8 +195,8 @@ function renderSummary() {
 
         const stepper = createStepper(
             item.qty,
-            () => changeItem(item.name, item.price, item.aCombinar, -1),
-            () => changeItem(item.name, item.price, item.aCombinar, 1)
+            () => changeItem(item.name, item.price, item.aCombinar, item.minQty || 1, -1),
+            () => changeItem(item.name, item.price, item.aCombinar, item.minQty || 1, 1)
         );
 
         const removeBtn = document.createElement('button');
