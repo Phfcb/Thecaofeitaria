@@ -10,13 +10,21 @@ const STATUS_OPTIONS = [
 
 const els = {
     loginView: document.getElementById('login-view'),
+    passwordView: document.getElementById('password-view'),
     ordersView: document.getElementById('orders-view'),
     loginForm: document.getElementById('login-form'),
     loginEmail: document.getElementById('login-email'),
     loginPassword: document.getElementById('login-password'),
     loginErro: document.getElementById('login-erro'),
     btnLogin: document.getElementById('btn-login'),
+    btnOpenPassword: document.getElementById('btn-open-password'),
     btnLogout: document.getElementById('btn-logout'),
+    passwordForm: document.getElementById('password-form'),
+    newPassword: document.getElementById('new-password'),
+    confirmPassword: document.getElementById('confirm-password'),
+    passwordMsg: document.getElementById('password-msg'),
+    btnSavePassword: document.getElementById('btn-save-password'),
+    btnCancelPassword: document.getElementById('btn-cancel-password'),
     btnRefresh: document.getElementById('btn-refresh'),
     searchInput: document.getElementById('search-input'),
     ordersStatus: document.getElementById('orders-status'),
@@ -66,15 +74,24 @@ function showLoginError(msg) {
     els.loginErro.hidden = false;
 }
 
+function setPasswordMsg(msg, isSuccess = false) {
+    els.passwordMsg.className = isSuccess ? 'success-msg' : 'error-msg';
+    els.passwordMsg.textContent = msg;
+    els.passwordMsg.hidden = !msg;
+}
+
 function setStatusMsg(msg) {
     els.ordersStatus.textContent = msg;
     els.ordersStatus.hidden = !msg;
 }
 
-function showView(authenticated) {
-    els.loginView.hidden = authenticated;
-    els.ordersView.hidden = !authenticated;
-    els.btnLogout.hidden = !authenticated;
+function showView(view) {
+    const logged = view !== 'login';
+    els.loginView.hidden = view !== 'login';
+    els.ordersView.hidden = view !== 'orders';
+    els.passwordView.hidden = view !== 'password';
+    els.btnLogout.hidden = !logged;
+    els.btnOpenPassword.hidden = !logged;
 }
 
 async function authHeaders() {
@@ -121,7 +138,7 @@ async function handleLogin(event) {
 
         saveSession({ access_token: data.access_token, user: data.user?.email || '' });
         els.loginForm.reset();
-        showView(true);
+        showView('orders');
         await fetchOrders();
     } catch {
         showLoginError('Erro de conexão. Tente novamente.');
@@ -135,7 +152,54 @@ function handleLogout() {
     clearSession();
     allOrders = [];
     els.ordersList.innerHTML = '';
-    showView(false);
+    showView('login');
+}
+
+async function handlePasswordUpdate(event) {
+    event.preventDefault();
+    setPasswordMsg('');
+
+    const pwd = els.newPassword.value;
+    if (pwd.length < 6) {
+        setPasswordMsg('A senha deve ter pelo menos 6 caracteres.');
+        return;
+    }
+
+    if (pwd !== els.confirmPassword.value) {
+        setPasswordMsg('As senhas não conferem.');
+        return;
+    }
+
+    const { url } = getConfig();
+    els.btnSavePassword.disabled = true;
+    els.btnSavePassword.textContent = 'Salvando...';
+
+    try {
+        const res = await fetch(`${url}/auth/v1/user`, {
+            method: 'PUT',
+            headers: await authHeaders(),
+            body: JSON.stringify({ password: pwd })
+        });
+
+        if (res.status === 401) {
+            handleLogout();
+            showLoginError('Sua sessão expirou. Entre novamente.');
+            return;
+        }
+
+        if (!res.ok) {
+            setPasswordMsg('Não foi possível alterar a senha.');
+            return;
+        }
+
+        els.passwordForm.reset();
+        setPasswordMsg('Senha alterada com sucesso!', true);
+    } catch {
+        setPasswordMsg('Erro de conexão. Tente novamente.');
+    } finally {
+        els.btnSavePassword.disabled = false;
+        els.btnSavePassword.textContent = 'Salvar senha';
+    }
 }
 
 async function fetchOrders() {
@@ -336,16 +400,42 @@ function initTabs() {
     });
 }
 
+function handleRecoveryHash() {
+    if (!window.location.hash) return false;
+    const params = new URLSearchParams(window.location.hash.slice(1));
+    const accessToken = params.get('access_token');
+    const type = params.get('type');
+
+    if (accessToken && type === 'recovery') {
+        saveSession({ access_token: accessToken, user: '' });
+        history.replaceState(null, '', window.location.pathname);
+        return true;
+    }
+
+    return false;
+}
+
 els.loginForm.addEventListener('submit', handleLogin);
+els.passwordForm.addEventListener('submit', handlePasswordUpdate);
+els.btnOpenPassword.addEventListener('click', () => {
+    setPasswordMsg('');
+    showView('password');
+});
+els.btnCancelPassword.addEventListener('click', () => {
+    showView('orders');
+    if (allOrders.length === 0) fetchOrders();
+});
 els.btnLogout.addEventListener('click', handleLogout);
 els.btnRefresh.addEventListener('click', fetchOrders);
 els.searchInput.addEventListener('input', renderOrders);
 
 initTabs();
 
-if (getSession()?.access_token) {
-    showView(true);
+if (handleRecoveryHash()) {
+    showView('password');
+} else if (getSession()?.access_token) {
+    showView('orders');
     fetchOrders();
 } else {
-    showView(false);
+    showView('login');
 }

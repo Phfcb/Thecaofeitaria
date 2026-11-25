@@ -19,7 +19,10 @@
                     <span>Thecãofeitaria</span>
                 </div>
             </div>
-            <button type="button" id="btn-logout" class="btn btn-outline btn-sm" hidden>Sair</button>
+            <div class="header-actions">
+                <button type="button" id="btn-open-password" class="btn btn-outline btn-sm" hidden>Alterar senha</button>
+                <button type="button" id="btn-logout" class="btn btn-outline btn-sm" hidden>Sair</button>
+            </div>
         </div>
     </header>
 
@@ -39,6 +42,27 @@
                 </div>
                 <p id="login-erro" class="error-msg" role="alert" hidden></p>
                 <button type="submit" id="btn-login" class="btn btn-primary btn-block">Entrar</button>
+            </form>
+        </section>
+
+        <section id="password-view" class="card login-card" hidden>
+            <h2>Alterar senha</h2>
+            <p class="muted">Escolha uma nova senha com pelo menos 6 caracteres.</p>
+
+            <form id="password-form" class="stack">
+                <div class="field">
+                    <label for="new-password">Nova senha</label>
+                    <input type="password" id="new-password" minlength="6" autocomplete="new-password" required>
+                </div>
+                <div class="field">
+                    <label for="confirm-password">Confirmar nova senha</label>
+                    <input type="password" id="confirm-password" minlength="6" autocomplete="new-password" required>
+                </div>
+                <p id="password-msg" class="error-msg" role="alert" hidden></p>
+                <div class="row-actions">
+                    <button type="submit" id="btn-save-password" class="btn btn-primary">Salvar senha</button>
+                    <button type="button" id="btn-cancel-password" class="btn btn-outline">Voltar</button>
+                </div>
             </form>
         </section>
 

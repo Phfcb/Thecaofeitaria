@@ -1,6 +1,10 @@
 const WHATSAPP_NUMBER = '5586981560306';
 const STORAGE_KEY = 'thecaofeitaria_cart_v1';
 const REQUEST_TIMEOUT_MS = 3000;
+const PICKUP_ADDRESSES = {
+    Centro: 'Rua Rui Barbosa, 677 — Centro (Sul)',
+    'Zona Leste': 'Rua Jornalista Alberoni Filho, 575 — Residencial Vila Itália'
+};
 
 const els = {
     lista: document.getElementById('lista-pedido'),
@@ -19,6 +23,7 @@ const els = {
     dataEntrega: document.getElementById('data-entrega'),
     horarioEntrega: document.getElementById('horario-entrega'),
     localRetirada: document.getElementById('local-retirada'),
+    enderecoRetirada: document.getElementById('endereco-retirada'),
     formaPagamento: document.getElementById('forma-pagamento'),
     observacoes: document.getElementById('observacoes')
 };
@@ -297,6 +302,8 @@ function buildWhatsAppMessage(payload) {
         })
         .join('\n');
 
+    const pickupAddress = PICKUP_ADDRESSES[payload.local_retirada];
+
     const lines = [
         `*Novo Pedido — Thecãofeitaria (${payload.codigo})*`,
         '',
@@ -304,7 +311,7 @@ function buildWhatsAppMessage(payload) {
         payload.pet_nome ? `*Pet:* ${payload.pet_nome}` : null,
         `*Data desejada:* ${formatDateBR(payload.data_entrega)}`,
         payload.horario_entrega ? `*Horário:* ${payload.horario_entrega}` : null,
-        `*Retirada:* ${payload.local_retirada}`,
+        `*Retirada:* ${payload.local_retirada}${pickupAddress ? ` (${pickupAddress})` : ''}`,
         `*Pagamento:* ${payload.forma_pagamento}`,
         '',
         '*Itens:*',
@@ -374,7 +381,16 @@ function initMinDate() {
     });
 }
 
+function initPickupAddress() {
+    els.localRetirada.addEventListener('change', () => {
+        const address = PICKUP_ADDRESSES[els.localRetirada.value];
+        els.enderecoRetirada.textContent = address || '';
+        els.enderecoRetirada.hidden = !address;
+    });
+}
+
 els.form.addEventListener('submit', handleSubmit);
 
 initMinDate();
+initPickupAddress();
 render();

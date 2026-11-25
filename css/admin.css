@@ -44,6 +44,12 @@ body {
     gap: 12px;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .brand {
     display: flex;
     align-items: center;
@@ -173,6 +179,22 @@ body {
     color: var(--danger);
     font-size: 14px;
     font-weight: 600;
+}
+
+.success-msg {
+    color: #1f7a3e;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.row-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.row-actions .btn {
+    flex: 1;
 }
 
 .toolbar {
