@@ -48,6 +48,12 @@ function formatDateBR(isoDate) {
     return `${day}/${month}/${year}`;
 }
 
+function isSunday(isoDate) {
+    if (!isoDate) return false;
+    const [year, month, day] = isoDate.split('-').map(Number);
+    return new Date(year, month - 1, day).getDay() === 0;
+}
+
 function generateOrderCode() {
     const now = new Date();
     const dd = String(now.getDate()).padStart(2, '0');
@@ -335,6 +341,11 @@ async function handleSubmit(event) {
         return;
     }
 
+    if (isSunday(els.dataEntrega.value)) {
+        showError('Atendemos de segunda a sábado. Escolha outra data.');
+        return;
+    }
+
     clearError();
     isSubmitting = true;
     els.enviarBtn.disabled = true;
@@ -353,6 +364,14 @@ async function handleSubmit(event) {
 
 function initMinDate() {
     els.dataEntrega.min = new Date().toISOString().split('T')[0];
+    els.dataEntrega.addEventListener('change', () => {
+        if (isSunday(els.dataEntrega.value)) {
+            showError('Atendemos de segunda a sábado. Escolha outra data.');
+            els.dataEntrega.value = '';
+        } else {
+            clearError();
+        }
+    });
 }
 
 els.form.addEventListener('submit', handleSubmit);

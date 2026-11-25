@@ -46,6 +46,13 @@ to authenticated
 using (true)
 with check (true);
 
+drop policy if exists "auth_delete_pedidos" on public.pedidos;
+create policy "auth_delete_pedidos"
+on public.pedidos
+for delete
+to authenticated
+using (true);
+
 -- Tabela interna sem policies públicas: acessada apenas pela RPC smart_keepalive.
 create table if not exists public.keepalive (
     id int primary key default 1 check (id = 1),
