@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self';">
+    <title>Thecãofeitaria | Confeitaria Pet</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/config.js" defer></script>
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="container nav">
+            <a href="#inicio" class="logo">
+                <img src="images/logo.jpeg" alt="Thecãofeitaria">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#produtos">Cardápio</a></li>
+                <li><a href="#montar-pedido">Pedido</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="eyebrow">Confeitaria especial para pets</span>
+                    <h1>Amor em cada pedacinho!</h1>
+                    <p>
+                        Delícias artesanais preparadas com carinho para tornar cada
+                        momento do seu pet ainda mais saboroso.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#produtos" class="btn btn-primary">Montar pedido</a>
+                        <a href="#encomendas" class="btn btn-outline">Como funciona</a>
+                    </div>
+                </div>
+                <div class="hero-media">
+                    <img src="images/destaque.jpeg" alt="Delícias preparadas pela Thecãofeitaria">
+                </div>
+            </div>
+        </section>
+
+        <section id="produtos" class="section">
+            <div class="container">
+                <header class="section-head">
+                    <span class="eyebrow">Cardápio</span>
+                    <h2>Monte seu pedido</h2>
+                    <p>Toque em + para adicionar os itens direto na sua sacola.</p>
+                </header>
+
+                <h3 class="category-title">Doces &amp; Salgados Pet</h3>
+                <div class="menu-grid">
+                    <article class="menu-item">
+                        <div class="menu-info">
+                            <h4>Petiscos</h4>
+                            <div class="variants">
+                                <div class="variant-row" data-name="Petiscos - 10 unidades" data-price="10">
+                                    <span class="variant-label">10 unidades · <strong>R$ 10,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                                <div class="variant-row" data-name="Petiscos - 20 unidades" data-price="19">
+                                    <span class="variant-label">20 unidades · <strong>R$ 19,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                                <div class="variant-row" data-name="Petiscos - 40 unidades" data-price="38">
+                                    <span class="variant-label">40 unidades · <strong>R$ 38,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-thumb">
+                            <img src="images/petiscos.jpeg" alt="Petiscos para pets">
+                        </div>
+                    </article>
+
+                    <article class="menu-item">
+                        <div class="menu-info">
+                            <h4>Docinhos e Coxinhas</h4>
+                            <div class="variants">
+                                <div class="variant-row" data-name="Docinhos e coxinhas - 4 unidades" data-price="10">
+                                    <span class="variant-label">4 unidades · <strong>R$ 10,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                                <div class="variant-row" data-name="Docinhos e coxinhas - 8 unidades" data-price="18">
+                                    <span class="variant-label">8 unidades · <strong>R$ 18,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-thumb menu-thumb-duo">
+                            <img src="images/docinhos.jpeg" alt="Docinhos para pets">
+                            <img src="images/coxinhas.jpeg" alt="Coxinhas para pets">
+                        </div>
+                    </article>
+
+                    <article class="menu-item">
+                        <div class="menu-info">
+                            <h4>Cupcakes</h4>
+                            <div class="variants">
+                                <div class="variant-row" data-name="Cupcake sem cobertura" data-price="7">
+                                    <span class="variant-label">Sem cobertura · <strong>R$ 7,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                                <div class="variant-row" data-name="Cupcake com cobertura" data-price="10">
+                                    <span class="variant-label">Com cobertura · <strong>R$ 10,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-thumb">
+                            <img src="images/cupcakes.jpeg" alt="Cupcakes para pets">
+                        </div>
+                    </article>
+
+                    <article class="menu-item">
+                        <div class="menu-info">
+                            <h4>Brownies</h4>
+                            <div class="variants">
+                                <div class="variant-row" data-name="Brownies - 12 unidades" data-price="50">
+                                    <span class="variant-label">12 unidades · <strong>R$ 50,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-thumb">
+                            <img src="images/brownies.jpeg" alt="Brownies para pets">
+                        </div>
+                    </article>
+
+                    <article class="menu-item">
+                        <div class="menu-info">
+                            <h4>Pirulitos</h4>
+                            <div class="variants">
+                                <div class="variant-row" data-name="Pirulito" data-price="7">
+                                    <span class="variant-label">Unidade · <strong>R$ 7,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-thumb">
+                            <img src="images/pirulitos.jpeg" alt="Pirulitos para pets">
+                        </div>
+                    </article>
+                </div>
+
+                <h3 class="category-title">Bolos</h3>
+                <div class="menu-grid">
+                    <article class="menu-item">
+                        <div class="menu-info">
+                            <h4>Bolo simples</h4>
+                            <div class="variants">
+                                <div class="variant-row" data-name="Bolo simples P - 10cm" data-price="45">
+                                    <span class="variant-label">P (10 cm) · <strong>R$ 45,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                                <div class="variant-row" data-name="Bolo simples M - 13cm" data-price="55">
+                                    <span class="variant-label">M (13 cm) · <strong>R$ 55,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                                <div class="variant-row" data-name="Bolo simples G - 18cm" data-price="70">
+                                    <span class="variant-label">G (18 cm) · <strong>R$ 70,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-thumb">
+                            <img src="images/bolo1.jpeg" alt="Bolo simples">
+                        </div>
+                    </article>
+
+                    <article class="menu-item">
+                        <div class="menu-info">
+                            <h4>Bolo com cobertura</h4>
+                            <div class="variants">
+                                <div class="variant-row" data-name="Bolo com cobertura P - 10cm" data-price="60">
+                                    <span class="variant-label">P (10 cm) · <strong>R$ 60,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                                <div class="variant-row" data-name="Bolo com cobertura M - 13cm" data-price="70">
+                                    <span class="variant-label">M (13 cm) · <strong>R$ 70,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                                <div class="variant-row" data-name="Bolo com cobertura G - 18cm" data-price="90">
+                                    <span class="variant-label">G (18 cm) · <strong>R$ 90,00</strong></span>
+                                    <div class="qty-control"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-thumb">
+                            <img src="images/bolo2.jpeg" alt="Bolo com cobertura">
+                        </div>
+                    </article>
+
+                    <article class="menu-item">
+                        <div class="menu-info">
+                            <h4>Bolo espatulado</h4>
+                            <div class="variants">
+                                <div class="variant-row" data-name="Bolo espatulado" data-price="0" data-combinar="true">
+                                    <span class="variant-label">Valor a combinar</span>
+                                    <div class="qty-control"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-thumb">
+                            <img src="images/bolo3.jpeg" alt="Bolo espatulado">
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="montar-pedido" class="section section-soft">
+            <div class="container pedido-wrap">
+                <header class="section-head">
+                    <span class="eyebrow">Finalizar</span>
+                    <h2>Seu pedido</h2>
+                    <p>Confira os itens e informe os dados para agilizar sua encomenda no WhatsApp.</p>
+                </header>
+
+                <div class="panel">
+                    <h3>Itens selecionados</h3>
+                    <ul id="lista-pedido" class="cart-list">
+                        <li class="cart-empty">Nenhum produto adicionado.</li>
+                    </ul>
+
+                    <div class="totals">
+                        <div class="total-row">
+                            <span>Total estimado</span>
+                            <strong id="valor-total">R$ 0,00</strong>
+                        </div>
+                        <div class="total-row total-sinal">
+                            <span>Entrada (50% para confirmar)</span>
+                            <strong id="valor-entrada">R$ 0,00</strong>
+                        </div>
+                        <p id="aviso-combinar" class="hint" hidden>
+                            Inclui item com valor a combinar (será confirmado no WhatsApp).
+                        </p>
+                    </div>
+                </div>
+
+                <form id="form-encomenda" class="panel" novalidate>
+                    <h3>Dados da encomenda</h3>
+                    <input type="text" id="website" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="fields-grid">
+                        <div class="field">
+                            <label for="cliente-nome">Seu nome *</label>
+                            <input type="text" id="cliente-nome" placeholder="Ex.: Ana Paula" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="pet-nome">Nome do pet</label>
+                            <input type="text" id="pet-nome" placeholder="Ex.: Thor">
+                        </div>
+
+                        <div class="field">
+                            <label for="data-entrega">Data desejada *</label>
+                            <input type="date" id="data-entrega" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="horario-entrega">Horário aproximado</label>
+                            <input type="time" id="horario-entrega">
+                        </div>
+
+                        <div class="field">
+                            <label for="local-retirada">Local de retirada *</label>
+                            <select id="local-retirada" required>
+                                <option value="">Selecione</option>
+                                <option value="Centro">Centro</option>
+                                <option value="Zona Leste">Zona Leste</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="forma-pagamento">Forma de pagamento *</label>
+                            <select id="forma-pagamento" required>
+                                <option value="">Selecione</option>
+                                <option value="Pix">Pix</option>
+                                <option value="Cartão de crédito">Cartão de crédito</option>
+                                <option value="Transferência">Transferência</option>
+                                <option value="Dinheiro">Dinheiro</option>
+                            </select>
+                        </div>
+
+                        <div class="field field-full">
+                            <label for="observacoes">Observações ou decoração (opcional)</label>
+                            <textarea id="observacoes" rows="3" placeholder="Ex.: Tema da festa, restrição alimentar ou detalhes da decoração."></textarea>
+                        </div>
+                    </div>
+
+                    <p id="pedido-erro" class="error-msg" role="alert" hidden></p>
+
+                    <button type="submit" id="enviar-pedido" class="btn btn-primary btn-block">
+                        Enviar pedido pelo WhatsApp
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section id="sobre" class="section">
+            <div class="container narrow">
+                <header class="section-head">
+                    <span class="eyebrow">Quem somos</span>
+                    <h2>Conheça a Thecãofeitaria</h2>
+                </header>
+                <p>
+                    Oi, tudo bem? Meu nome é Márcia Rosal, proprietária da
+                    <strong>@thecaofeitaria</strong>, a primeira Confeitaria Pet de Teresina!
+                </p>
+                <p>
+                    Nosso catálogo foi pensado para facilitar sua experiência, permitindo que
+                    você conheça nossos produtos, confira as fotos, os valores e monte seu pedido
+                    com praticidade.
+                </p>
+            </div>
+        </section>
+
+        <section id="encomendas" class="section section-soft">
+            <div class="container">
+                <header class="section-head">
+                    <span class="eyebrow">Informações importantes</span>
+                    <h2>Como funciona a encomenda</h2>
+                </header>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Pagamento de entrada</h3>
+                        <p>É necessário realizar 50% de entrada para confirmar. O restante é pago na entrega.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Retirada</h3>
+                        <p>A retirada dos pedidos é realizada no Centro ou na Zona Leste de Teresina.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Decoração</h3>
+                        <p>Decoração de bolos, doces e festas possui valores à parte.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Formas de pagamento</h3>
+                        <p>Dinheiro, cartão de crédito, transferência e Pix.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="section">
+            <div class="container">
+                <header class="section-head">
+                    <span class="eyebrow">Fale conosco</span>
+                    <h2>Entre em contato</h2>
+                </header>
+
+                <div class="contato-grid">
+                    <div class="info-card">
+                        <h3>WhatsApp</h3>
+                        <p>(86) 98156-0306</p>
+                        <a href="https://wa.me/5586981560306" target="_blank" rel="noopener noreferrer">
+                            Conversar pelo WhatsApp
+                        </a>
+                    </div>
+                    <div class="info-card">
+                        <h3>Instagram</h3>
+                        <p>@thecaofeitaria</p>
+                        <a href="https://www.instagram.com/thecaofeitaria/" target="_blank" rel="noopener noreferrer">
+                            Visitar Instagram
+                        </a>
+                    </div>
+                    <div class="info-card">
+                        <h3>Horário</h3>
+                        <p>Segunda a sábado<br>8h às 20h</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="cart-bar" class="cart-bar" hidden>
+        <div class="container cart-bar-inner">
+            <div class="cart-bar-summary">
+                <span id="cart-bar-count">0 itens</span>
+                <strong id="cart-bar-total">R$ 0,00</strong>
+            </div>
+            <a href="#montar-pedido" class="btn btn-light btn-sm">Ver pedido</a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Thecãofeitaria — Teresina, PI</p>
+    </footer>
+</body>
+</html>
